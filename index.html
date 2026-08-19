@@ -1042,6 +1042,46 @@
 
     }
 
+    function filterCategory(category, button) {
+
+  // Retire active sou tout categories
+  document
+    .querySelectorAll(".category")
+    .forEach(item => {
+      item.classList.remove("active");
+    });
+
+  // Mete active sou category nou klike a
+  button.classList.add("active");
+
+  // Si se All, montre tout
+  if (category === "All") {
+    renderTrending();
+    renderLatest();
+    return;
+  }
+
+  // Filtre movies yo
+  const filtered =
+    movies.filter(movie =>
+      movie.category === category
+    );
+
+  // Mete rezilta yo nan Trending
+  document.getElementById("trendingGrid")
+    .innerHTML =
+    filtered
+      .map(createMovieCard)
+      .join("");
+
+  // Mete menm rezilta yo nan Latest
+  document.getElementById("latestGrid")
+    .innerHTML =
+    filtered
+      .map(createMovieCard)
+      .join("");
+
+}
 
     /* =========================================
        CONTINUE WATCHING
