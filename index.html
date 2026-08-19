@@ -793,10 +793,10 @@
           Review
         </button>
 
-        <button class="action">
-          <span>🔖</span>
-          Save
-        </button>
+        <button class="action" onclick="toggleSave()">
+  <span id="saveIcon">🔖</span>
+  <span id="saveText">Save</span>
+</button>
 
       </div>
 
@@ -1234,6 +1234,8 @@ function showLatestAll() {
 
       if (!movie) return;
 
+      currentMovieId = movie.id;
+
       document.getElementById("homePage")
         .style.display = "none";
 
@@ -1309,6 +1311,79 @@ function showLatestAll() {
 
     }
 
+  /* =========================================
+   FAVORITES / SAVE
+========================================= */
+
+let favorites = [];
+
+let currentMovieId = null;
+
+
+function toggleSave() {
+
+  if (!currentMovieId) return;
+
+  const index =
+    favorites.indexOf(currentMovieId);
+
+  if (index === -1) {
+
+    favorites.push(currentMovieId);
+
+    document.getElementById("saveText")
+      .textContent = "Saved";
+
+  } else {
+
+    favorites.splice(index, 1);
+
+    document.getElementById("saveText")
+      .textContent = "Save";
+
+  }
+
+}
+
+
+function showFavorites() {
+
+  document.getElementById("detailsPage")
+    .style.display = "none";
+
+  document.getElementById("homePage")
+    .style.display = "block";
+
+  const grid =
+    document.getElementById("trendingGrid");
+
+  const favoriteMovies =
+    movies.filter(movie =>
+      favorites.includes(movie.id)
+    );
+
+  grid.innerHTML =
+    favoriteMovies.length
+      ? favoriteMovies
+          .map(createMovieCard)
+          .join("")
+      : `
+        <div style="
+          grid-column: 1 / -1;
+          text-align: center;
+          color: #8e879c;
+          padding: 40px 20px;
+        ">
+          No saved movies yet ❤️
+        </div>
+      `;
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}  
 
     /* =========================================
        HOME
