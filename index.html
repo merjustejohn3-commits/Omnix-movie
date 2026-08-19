@@ -1093,6 +1093,81 @@
 
 }
 
+    function showContinueAll() {
+
+  const list =
+    document.getElementById("continueList");
+
+  list.innerHTML =
+    movies.map((movie, index) => {
+
+      const progress =
+        [70, 45, 25, 60, 35, 50][index] || 40;
+
+      return `
+        <article class="continue-card"
+          onclick="openDetails(${movie.id})">
+
+          <div class="continue-image">
+
+            <img
+              src="${movie.image}"
+              alt="${movie.title}"
+              loading="lazy"
+            >
+
+            <span class="duration">
+              ${movie.duration}
+            </span>
+
+            <div class="progress">
+              <span style="width:${progress}%"></span>
+            </div>
+
+          </div>
+
+          <div class="continue-title">
+            ${movie.title}
+          </div>
+
+        </article>
+      `;
+
+    }).join("");
+}
+
+
+function showTrendingAll() {
+
+  const grid =
+    document.getElementById("trendingGrid");
+
+  const trending =
+    movies.filter(movie => movie.trending);
+
+  grid.innerHTML =
+    trending
+      .map(createMovieCard)
+      .join("");
+
+}
+
+
+function showLatestAll() {
+
+  const grid =
+    document.getElementById("latestGrid");
+
+  const latest =
+    movies.filter(movie => movie.latest);
+
+  grid.innerHTML =
+    latest
+      .map(createMovieCard)
+      .join("");
+
+}
+
     /* =========================================
        CONTINUE WATCHING
     ========================================== */
