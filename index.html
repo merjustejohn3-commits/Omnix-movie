@@ -1280,6 +1280,15 @@ function showLatestAll() {
 
       currentMovieId = movie.id;
 
+      const isFavorite =
+  favorites.includes(movie.id);
+
+document.getElementById("saveIcon")
+  .textContent = isFavorite ? "❤️" : "🔖";
+
+document.getElementById("saveText")
+  .textContent = isFavorite ? "Saved" : "Save";
+
       document.getElementById("homePage")
         .style.display = "none";
 
