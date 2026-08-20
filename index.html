@@ -1206,36 +1206,39 @@ body {
 
   <nav class="bottom-nav">
 
-    <button
-      class="nav-item active"
-      onclick="showHome()"
-    >
-      <span class="nav-icon">⌂</span>
-      Home
-    </button>
+  <button
+    class="nav-item active"
+    onclick="setActiveNav(this); showHome()"
+  >
+    <span class="nav-icon">⌂</span>
+    Home
+  </button>
 
-    <button
-      class="nav-item"
-      onclick="focusSearch()"
-    >
-      <span class="nav-icon">⌕</span>
-      Search
-    </button>
+  <button
+    class="nav-item"
+    onclick="setActiveNav(this); focusSearch()"
+  >
+    <span class="nav-icon">⌕</span>
+    Search
+  </button>
 
-    <button
-  class="nav-item"
-  onclick="showFavorites()"
->
-  <span class="nav-icon">♡</span>
-  Favorites
-</button>
+  <button
+    class="nav-item"
+    onclick="setActiveNav(this); showFavorites()"
+  >
+    <span class="nav-icon">♡</span>
+    Favorites
+  </button>
 
-    <button class="nav-item">
-      <span class="nav-icon">◉</span>
-      Profile
-    </button>
+  <button
+    class="nav-item"
+    onclick="setActiveNav(this)"
+  >
+    <span class="nav-icon">◉</span>
+    Profile
+  </button>
 
-  </nav>
+</nav>
 
 
   <script>
