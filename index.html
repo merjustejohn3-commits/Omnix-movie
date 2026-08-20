@@ -1392,41 +1392,69 @@ function toggleSave() {
 
 function showFavorites() {
 
+  // Kache Home ak Details
+  document.getElementById("homePage")
+    .style.display = "none";
+
   document.getElementById("detailsPage")
     .style.display = "none";
 
-  document.getElementById("homePage")
+  // Montre Favorites
+  document.getElementById("favoritesPage")
     .style.display = "block";
 
+  // Jwenn grid Favorites la
   const grid =
-    document.getElementById("trendingGrid");
+    document.getElementById("favoritesGrid");
 
+  // Jwenn movies ki saved yo
   const favoriteMovies =
     movies.filter(movie =>
       favorites.includes(movie.id)
     );
 
-  grid.innerHTML =
-    favoriteMovies.length
-      ? favoriteMovies
-          .map(createMovieCard)
-          .join("")
-      : `
-        <div style="
-          grid-column: 1 / -1;
-          text-align: center;
-          color: #8e879c;
-          padding: 40px 20px;
-        ">
-          No saved movies yet ❤️
-        </div>
-      `;
+  // Si pa gen favorites
+  if (favoriteMovies.length === 0) {
 
+    grid.innerHTML = `
+      <div style="
+        grid-column: 1 / -1;
+        text-align: center;
+        color: #8e879c;
+        padding: 60px 20px;
+      ">
+        <div style="font-size: 40px; margin-bottom: 15px;">
+          ❤️
+        </div>
+
+        <div style="font-size: 15px; color: white;">
+          No favorites yet
+        </div>
+
+        <div style="
+          font-size: 12px;
+          margin-top: 8px;
+        ">
+          Save movies you love and find them here.
+        </div>
+      </div>
+    `;
+
+  } else {
+
+    // Montre favorites yo
+    grid.innerHTML =
+      favoriteMovies
+        .map(createMovieCard)
+        .join("");
+
+  }
+
+  // Monte anlè
   window.scrollTo({
     top: 0,
     behavior: "smooth"
   });
-
 }  
 
     /* =========================================
