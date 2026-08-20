@@ -1372,9 +1372,16 @@ function toggleSave() {
   const index =
     favorites.indexOf(currentMovieId);
 
+  // SI film nan poko sove
   if (index === -1) {
 
     favorites.push(currentMovieId);
+
+    // Sove favorites yo nan browser la
+    localStorage.setItem(
+      "omnixFavorites",
+      JSON.stringify(favorites)
+    );
 
     document.getElementById("saveIcon")
       .textContent = "❤️";
@@ -1382,9 +1389,18 @@ function toggleSave() {
     document.getElementById("saveText")
       .textContent = "Saved";
 
-  } else {
+  }
+
+  // SI film nan te deja sove
+  else {
 
     favorites.splice(index, 1);
+
+    // Mete nouvo lis la nan browser la
+    localStorage.setItem(
+      "omnixFavorites",
+      JSON.stringify(favorites)
+    );
 
     document.getElementById("saveIcon")
       .textContent = "🔖";
