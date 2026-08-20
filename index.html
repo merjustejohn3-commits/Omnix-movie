@@ -1359,7 +1359,8 @@ function showLatestAll() {
    FAVORITES / SAVE
 ========================================= */
 
-let favorites = [];
+let favorites =
+  JSON.parse(localStorage.getItem("omnixFavorites")) || [];
 
 let currentMovieId = null;
 
