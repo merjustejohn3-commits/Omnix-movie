@@ -1375,12 +1375,18 @@ function toggleSave() {
 
     favorites.push(currentMovieId);
 
+    document.getElementById("saveIcon")
+      .textContent = "❤️";
+
     document.getElementById("saveText")
       .textContent = "Saved";
 
   } else {
 
     favorites.splice(index, 1);
+
+    document.getElementById("saveIcon")
+      .textContent = "🔖";
 
     document.getElementById("saveText")
       .textContent = "Save";
