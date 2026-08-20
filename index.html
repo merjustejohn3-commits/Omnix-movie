@@ -1463,13 +1463,21 @@ function showFavorites() {
 
     function showHome() {
 
-      document.getElementById("detailsPage")
-        .style.display = "none";
+  document.getElementById("detailsPage")
+    .style.display = "none";
 
-      document.getElementById("homePage")
-        .style.display = "block";
+  document.getElementById("favoritesPage")
+    .style.display = "none";
 
-    }
+  document.getElementById("homePage")
+    .style.display = "block";
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
 
 
     /* =========================================
