@@ -1944,7 +1944,18 @@ function showFavorites() {
 
     }
 
+function setActiveNav(button) {
 
+  document
+    .querySelectorAll(".nav-item")
+    .forEach(item => {
+      item.classList.remove("active");
+    });
+
+  button.classList.add("active");
+}
+    
+    
     /* =========================================
        INITIALIZE
     ========================================== */
