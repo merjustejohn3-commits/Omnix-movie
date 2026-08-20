@@ -557,6 +557,300 @@
         height: 190px;
       }
     }
+
+/* =========================
+   OMNIX MOVIES — PREMIUM UI
+========================= */
+
+body {
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(255, 23, 68, 0.14),
+      transparent 38%
+    ),
+    #08070d;
+}
+
+/* HEADER */
+
+.header {
+  padding: 28px 20px 18px;
+}
+
+.hello {
+  color: #777280;
+  font-size: 12px;
+  letter-spacing: .4px;
+  margin-bottom: 6px;
+}
+
+.username {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -.5px;
+}
+
+.notification {
+  width: 42px;
+  height: 42px;
+  background: rgba(255,255,255,.055);
+  border: 1px solid rgba(255,255,255,.09);
+  box-shadow: 0 8px 25px rgba(0,0,0,.25);
+  transition: .2s ease;
+}
+
+.notification:active {
+  transform: scale(.92);
+}
+
+/* HERO */
+
+.hero-section {
+  padding: 8px 18px 0;
+}
+
+.hero {
+  height: 225px;
+  border-radius: 22px;
+  background: #111018;
+  box-shadow:
+    0 20px 45px rgba(0,0,0,.35),
+    0 0 0 1px rgba(255,255,255,.04);
+}
+
+.hero img {
+  filter: brightness(.82);
+  transform: scale(1.01);
+}
+
+.hero::after {
+  background:
+    linear-gradient(
+      to top,
+      rgba(5,4,9,.98) 0%,
+      rgba(5,4,9,.58) 38%,
+      rgba(5,4,9,.05) 75%
+    );
+}
+
+.hero-content {
+  left: 20px;
+  right: 20px;
+  bottom: 19px;
+}
+
+.hero-title {
+  font-size: 24px;
+  letter-spacing: -.5px;
+}
+
+.hero-meta {
+  color: #c5c1c9;
+  font-size: 11px;
+}
+
+/* DOTS */
+
+.hero-dots {
+  margin: 13px 0 25px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: #3c3943;
+  transition: .2s ease;
+}
+
+.dot.active {
+  width: 24px;
+  background: #fff;
+}
+
+/* CATEGORIES */
+
+.categories {
+  gap: 27px;
+  padding: 0 20px;
+}
+
+.category {
+  font-size: 13px;
+  font-weight: 600;
+  color: #77717f;
+  transition: .2s ease;
+}
+
+.category.active {
+  color: #fff;
+}
+
+.category.active::after {
+  width: 22px;
+  height: 3px;
+  background: #ff1744;
+  box-shadow: 0 0 10px rgba(255,23,68,.5);
+}
+
+/* SECTIONS */
+
+.section {
+  margin-top: 31px;
+}
+
+.section-header {
+  padding: 0 20px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -.3px;
+}
+
+.view-all {
+  color: #8d8794;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* CONTINUE */
+
+.continue-list {
+  gap: 15px;
+  padding: 0 20px;
+}
+
+.continue-card {
+  flex: 0 0 245px;
+}
+
+.continue-image {
+  height: 138px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.25);
+}
+
+.continue-image img {
+  transition: transform .3s ease;
+}
+
+.continue-card:active img {
+  transform: scale(1.03);
+}
+
+.duration {
+  right: 9px;
+  bottom: 9px;
+  background: rgba(0,0,0,.75);
+  backdrop-filter: blur(8px);
+  font-size: 10px;
+}
+
+.progress {
+  height: 3px;
+  background: rgba(255,255,255,.15);
+}
+
+.progress span {
+  background: #ff1744;
+  box-shadow: 0 0 8px rgba(255,23,68,.6);
+}
+
+.continue-title {
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+/* MOVIE GRID */
+
+.movie-grid {
+  gap: 16px 11px;
+  padding: 0 20px;
+}
+
+.movie-image {
+  height: 190px;
+  border-radius: 13px;
+  box-shadow: 0 9px 25px rgba(0,0,0,.25);
+}
+
+.movie-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.18),
+    transparent 45%
+  );
+}
+
+.movie-rating {
+  top: 8px;
+  right: 8px;
+  background: rgba(0,0,0,.72);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.08);
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.movie-name {
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 9px;
+}
+
+.movie-year {
+  color: #706a77;
+  font-size: 10px;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav {
+  height: 76px;
+  background: rgba(9,7,14,.94);
+  border-top: 1px solid rgba(255,255,255,.06);
+  box-shadow: 0 -10px 35px rgba(0,0,0,.25);
+}
+
+.nav-item {
+  color: #65606c;
+  font-size: 10px;
+  transition: .2s ease;
+}
+
+.nav-icon {
+  font-size: 21px;
+}
+
+.nav-item.active {
+  color: #ff1744;
+}
+
+.nav-item:active {
+  transform: scale(.94);
+}
+
+/* MOBILE */
+
+@media (max-width: 380px) {
+
+  .hero {
+    height: 205px;
+  }
+
+  .movie-image {
+    height: 205px;
+  }
+
+}
+    
   </style>
 </head>
 
