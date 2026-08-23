@@ -1307,7 +1307,7 @@ async function loadMovies() {
     const response = await fetch(API_URL);
 
     if (!response.ok) {
-      throw new Error("API request failed: " + response.status);
+      throw new Error("API request failed");
     }
 
     const data = await response.json();
@@ -1317,14 +1317,23 @@ async function loadMovies() {
     movies = data.map(movie => ({
 
       id: Number(movie.ID),
+
       title: movie.Title,
+
       category: movie.Category,
+
       year: String(movie.Year),
+
       duration: movie.Duration,
+
       rating: movie.Rating,
+
       quality: movie.Quality,
+
       image: movie.Image,
+
       description: movie.Description,
+
       videoURL: movie.VideoURL,
 
       trending:
@@ -1348,8 +1357,6 @@ async function loadMovies() {
     console.error("Error loading movies:", error);
 
   }
-
-}
 
 }
 
