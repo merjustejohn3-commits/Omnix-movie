@@ -1291,112 +1291,73 @@ body {
   <script>
 
     /* =========================================
-       TEMPORARY MOVIE DATA
+   GOOGLE SHEETS MOVIE DATA
+========================================= */
 
-       IMPORTANT:
-       Later this will come from Google Sheets
-       through Google Apps Script.
-    ========================================== */
+let movies = [];
 
-    const movies = [
+const API_URL =
+  "https://script.google.com/macros/s/AKfycbzB76rrzGKtChYHnsivdlWoUdhizk5GJfXc_Q2QHwH8j3VPFL_OpaJGQDB2j5I7g0m_mw/exec";
 
-      {
-        id: 1,
-        title: "The Last Journey",
-        category: "Movies",
-        year: "2026",
-        duration: "1:42:20",
-        rating: "4.8",
-        quality: "4K Ultra",
-        image:
-          "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=800&q=80",
-        description:
-          "A cinematic journey filled with mystery, adventure and unforgettable moments.",
-        trending: true,
-        latest: true
-      },
 
-      {
-        id: 2,
-        title: "Night City",
-        category: "Drama",
-        year: "2026",
-        duration: "1:35:10",
-        rating: "4.6",
-        quality: "HD",
-        image:
-          "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80",
-        description:
-          "A dramatic story unfolding through the lights and shadows of a modern city.",
-        trending: true,
-        latest: true
-      },
+async function loadMovies() {
 
-      {
-        id: 3,
-        title: "Beyond The Sky",
-        category: "Movies",
-        year: "2025",
-        duration: "2:01:15",
-        rating: "4.7",
-        quality: "4K",
-        image:
-          "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&w=800&q=80",
-        description:
-          "An inspiring adventure beyond everything the characters thought they knew.",
-        trending: true,
-        latest: false
-      },
+  try {
 
-      {
-        id: 4,
-        title: "The Secret",
-        category: "Webseries",
-        year: "2026",
-        duration: "48:20",
-        rating: "4.9",
-        quality: "HD",
-        image:
-          "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80",
-        description:
-          "A mysterious series where every episode reveals another secret.",
-        trending: true,
-        latest: true
-      },
+    const response =
+      await fetch(API_URL);
 
-      {
-        id: 5,
-        title: "Lost Memories",
-        category: "Drama",
-        year: "2025",
-        duration: "1:28:45",
-        rating: "4.5",
-        quality: "HD",
-        image:
-          "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80",
-        description:
-          "A powerful drama about memories, choices and second chances.",
-        trending: false,
-        latest: true
-      },
+    const data =
+      await response.json();
 
-      {
-        id: 6,
-        title: "Final Destination",
-        category: "Movies",
-        year: "2026",
-        duration: "1:52:10",
-        rating: "4.4",
-        quality: "HD",
-        image:
-          "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=800&q=80",
-        description:
-          "An exciting story where every decision changes the journey.",
-        trending: true,
-        latest: false
-      }
+    movies = data.map(movie => ({
 
-    ];
+      id: Number(movie.ID),
+
+      title: movie.Title,
+
+      category: movie.Category,
+
+      year: String(movie.Year),
+
+      duration: movie.Duration,
+
+      rating: movie.Rating,
+
+      quality: movie.Quality,
+
+      image: movie.Image,
+
+      description: movie.Description,
+
+      videoURL: movie.VideoURL,
+
+      trending:
+        movie.Trending === true ||
+        String(movie.Trending).toLowerCase() === "true",
+
+      latest:
+        movie.Latest === true ||
+        String(movie.Latest).toLowerCase() === "true"
+
+    }));
+
+    console.log("Movies loaded:", movies);
+
+    renderTrending();
+    renderLatest();
+    renderContinueWatching();
+
+  } catch (error) {
+
+    console.error(
+      "Error loading movies:",
+      error
+    );
+
+  }
+
+}
 
 
     /* =========================================
