@@ -1304,36 +1304,27 @@ async function loadMovies() {
 
   try {
 
-    const response =
-      await fetch(API_URL);
+    const response = await fetch(API_URL);
+
+    if (!response.ok) {
+      throw new Error("API request failed: " + response.status);
+    }
+
+    const data = await response.json();
 
     console.log("API DATA:", data);
 
-    const data =
-      await response.json();
-
     movies = data.map(movie => ({
 
-     console.log("MOVIES:", movies); 
-
       id: Number(movie.ID),
-
       title: movie.Title,
-
       category: movie.Category,
-
       year: String(movie.Year),
-
       duration: movie.Duration,
-
       rating: movie.Rating,
-
       quality: movie.Quality,
-
       image: movie.Image,
-
       description: movie.Description,
-
       videoURL: movie.VideoURL,
 
       trending:
@@ -1346,7 +1337,7 @@ async function loadMovies() {
 
     }));
 
-    console.log("Movies loaded:", movies);
+    console.log("MOVIES:", movies);
 
     renderTrending();
     renderLatest();
@@ -1354,12 +1345,11 @@ async function loadMovies() {
 
   } catch (error) {
 
-    console.error(
-      "Error loading movies:",
-      error
-    );
+    console.error("Error loading movies:", error);
 
   }
+
+}
 
 }
 
