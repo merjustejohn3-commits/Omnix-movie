@@ -1668,6 +1668,36 @@ document.getElementById("saveText")
 
     }
 
+    async function playMovie() {
+
+  const movie = movies.find(
+    movie => movie.id === currentMovieId
+  );
+
+  if (!movie || !movie.videoURL) {
+    alert("Video unavailable.");
+    return;
+  }
+
+  try {
+
+    // Montre Monetag Rewarded Interstitial
+    await show_11640504();
+
+    // Pub la fini
+    window.open(movie.videoURL, "_blank");
+
+  } catch (error) {
+
+    console.error("Ad error:", error);
+
+    // Si pub la pa disponib, pa lanse video a otomatikman
+    alert("Please try again.");
+
+  }
+
+}
+
 
     /* =========================================
        RELATED MOVIES
