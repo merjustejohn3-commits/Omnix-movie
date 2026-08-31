@@ -2396,7 +2396,257 @@ function setActiveNav(button) {
 
   button.classList.add("active");
 }
-    
+    /* =========================================
+   PROFILE / ACCOUNT SYSTEM
+========================================= */
+
+let currentUser =
+  JSON.parse(
+    localStorage.getItem("omnixUser")
+  ) || null;
+
+
+/* =========================================
+   SHOW PROFILE
+========================================= */
+
+function showProfile() {
+
+  // Kache tout lòt pages
+  document.getElementById("homePage")
+    .style.display = "none";
+
+  document.getElementById("favoritesPage")
+    .style.display = "none";
+
+  document.getElementById("detailsPage")
+    .style.display = "none";
+
+
+  // Montre Profile
+  document.getElementById("profilePage")
+    .style.display = "block";
+
+
+  // Mete bon UI
+  renderProfile();
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* =========================================
+   CREATE ACCOUNT
+========================================= */
+
+function createAccount() {
+
+  const firstName =
+    document.getElementById("firstNameInput")
+      .value.trim();
+
+  const lastName =
+    document.getElementById("lastNameInput")
+      .value.trim();
+
+  const email =
+    document.getElementById("emailInput")
+      .value.trim();
+
+  const phone =
+    document.getElementById("phoneInput")
+      .value.trim();
+
+
+  // Verification
+  if (!firstName) {
+    alert("Please enter your first name.");
+    return;
+  }
+
+  if (!lastName) {
+    alert("Please enter your last name.");
+    return;
+  }
+
+  if (!email) {
+    alert("Please enter your email.");
+    return;
+  }
+
+
+  // Kreye user object
+  const user = {
+
+    firstName: firstName,
+
+    lastName: lastName,
+
+    email: email,
+
+    phone: phone,
+
+    createdAt:
+      new Date().toISOString()
+
+  };
+
+
+  // Save local account
+  localStorage.setItem(
+    "omnixUser",
+    JSON.stringify(user)
+  );
+
+
+  // Mete nan variable global
+  currentUser = user;
+
+
+  // Montre profile
+  renderProfile();
+
+}
+
+
+/* =========================================
+   RENDER PROFILE
+========================================= */
+
+function renderProfile() {
+
+  const form =
+    document.getElementById(
+      "createAccountForm"
+    );
+
+  const card =
+    document.getElementById(
+      "profileCard"
+    );
+
+
+  // Si user pa konekte
+  if (!currentUser) {
+
+    form.style.display = "block";
+
+    card.style.display = "none";
+
+    return;
+
+  }
+
+
+  // User konekte
+  form.style.display = "none";
+
+  card.style.display = "block";
+
+
+  const firstName =
+    currentUser.firstName || "";
+
+  const lastName =
+    currentUser.lastName || "";
+
+  const fullName =
+    `${firstName} ${lastName}`.trim();
+
+
+  document.getElementById(
+    "profileName"
+  ).textContent =
+    fullName || "Movie Lover";
+
+
+  document.getElementById(
+    "profileEmail"
+  ).textContent =
+    currentUser.email || "-";
+
+
+  document.getElementById(
+    "profileFirstName"
+  ).textContent =
+    firstName || "-";
+
+
+  document.getElementById(
+    "profileLastName"
+  ).textContent =
+    lastName || "-";
+
+
+  document.getElementById(
+    "profileEmailInfo"
+  ).textContent =
+    currentUser.email || "-";
+
+
+  document.getElementById(
+    "profilePhone"
+  ).textContent =
+    currentUser.phone || "Not provided";
+
+
+  // Premye lèt non an
+  document.getElementById(
+    "profileAvatar"
+  ).textContent =
+    firstName
+      ? firstName.charAt(0).toUpperCase()
+      : "?";
+
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+function logoutAccount() {
+
+  localStorage.removeItem(
+    "omnixUser"
+  );
+
+  currentUser = null;
+
+  renderProfile();
+
+}
+
+
+/* =========================================
+   GOOGLE LOGIN
+========================================= */
+
+function loginWithGoogle() {
+
+  alert(
+    "Google authentication will be connected next."
+  );
+
+}
+
+
+/* =========================================
+   APPLE LOGIN
+========================================= */
+
+function loginWithApple() {
+
+  alert(
+    "Apple authentication will be connected next."
+  );
+
+}
     
     /* =========================================
        INITIALIZE
