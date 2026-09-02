@@ -1,0 +1,14 @@
+{
+  "name": "omniix-movie",
+  "compatibility_date": "2026-09-02",
+  "assets": {
+    "directory": "./"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "moviecoreoneplus",
+      "database_id": "af6dac74-3021-4ce1-898b-c0fe39d9e563"
+    }
+  ]
+}
